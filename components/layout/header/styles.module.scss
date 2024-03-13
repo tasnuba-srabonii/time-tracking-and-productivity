@@ -1,0 +1,58 @@
+@use "@/public/styles/variables" as *;
+
+.container {
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  z-index: 1;
+  width: calc(100% - $sidebar-width);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: $header-height;
+  padding: 8px 24px;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem $sidebar-bg;
+}
+
+.user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 50px;
+  cursor: pointer;
+
+  &__dropdown {
+    position: absolute;
+    top: 45px;
+    z-index: 1;
+    min-width: 200px;
+    min-height: 300px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px $sidebar-bg;
+    border-radius: 8px;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+
+      &__email {
+        opacity: 70%;
+        font-size: 12px;
+      }
+    }
+    &__bottom {
+      position: absolute;
+      bottom: 20px;
+      width: 80%;
+    }
+    &__border {
+      padding: 25px;
+      border-bottom: 1px solid lighten($primary-color, 35%);
+    }
+  }
+}

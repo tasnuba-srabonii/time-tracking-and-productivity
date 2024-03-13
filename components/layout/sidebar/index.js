@@ -1,24 +1,26 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import Logo from "@/public/logo.png";
+import Logo from "@/public/icons/logo.png";
 import Link from "next/link";
 
 const Sidebar = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <Image src={Logo} height={30} width={30} alt="Ticker Logo" />
-        <h1>Ticker</h1>
-      </div>
-      <div className={styles.content}>
-        <div>
-          <Link href="/">Dashboard</Link>
+      <Link href="/dashboard">
+        <div className={styles.header}>
+          <Image src={Logo} height={30} width={30} alt="Ticker Logo" />
+          <h1>Ticker</h1>
         </div>
-        <div>
+      </Link>
+      <div className={styles.content}>
+        <div className={styles.content__item}>
+          <Link href="/dashboard">Dashboard</Link>
+        </div>
+        <div className={styles.content__item}>
           <Link href="/dashboard/projects">Projects</Link>
         </div>
-        <div>
+        <div className={styles.content__item}>
           <Link href="/integration">Integration</Link>
         </div>
       </div>

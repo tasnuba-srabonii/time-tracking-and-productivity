@@ -1,0 +1,6 @@
+@use "@/public/styles/variables" as *;
+
+.main {
+  padding-top: $header-height;
+  padding-left: $sidebar-width;
+}

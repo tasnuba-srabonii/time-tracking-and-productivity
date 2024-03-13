@@ -10,7 +10,7 @@ export const metadata = {
   title: "Ticker",
   description: "Time tracking and productivity app",
   icons: {
-    icon: "/logo.png",
+    icon: "/icons/logo.png",
   },
 };
 
