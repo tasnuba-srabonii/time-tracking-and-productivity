@@ -1,0 +1,33 @@
+@use "@/public/styles/variables" as *;
+
+.container {
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 260px;
+  height: 100%;
+  padding: 24px 0 100px 0;
+  background-color: $sidebar-bg;
+  box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.content {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 20px;
+  text-align: left;
+
+  & div {
+    padding-left: 24px;
+  }
+  & a:hover {
+    background-color: darken($sidebar-bg, 15%);
+  }
+}
