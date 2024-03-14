@@ -3,14 +3,14 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
-const ResetPassword = () => {
-  const [passwordInfo, setPasswordInfo] = useState({});
+const SignUp = () => {
+  const [signupInfo, setSignupInfo] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setPasswordInfo((prevState) => ({ ...prevState, [name]: value }));
+    setSignupInfo((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = (event) => {
@@ -22,37 +22,55 @@ const ResetPassword = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.content__header}>
-          <p className={styles.content__headline}>Reset Password</p>
-          <p className={styles.content__tagline}>Enter a new password</p>
+          <p className={styles.content__headline}>Sign up</p>
+          {/* <p className={styles.content__tagline}>Login to Ticker</p> */}
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={handleInput}
+            className={styles.input}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleInput}
+            className={styles.input}
+          />
+          <input
             type="password"
-            name="newpassword"
-            placeholder="New password"
+            name="password"
+            placeholder="Password"
             onChange={handleInput}
             className={styles.input}
           />
           <input
             type="password"
             name="confirmPassword"
-            placeholder="Confirm new password"
+            placeholder="Re-enter Password"
             onChange={handleInput}
             className={styles.input}
           />
           <button type="submit" className={styles.submit}>
-            Submit
+            Register
           </button>
         </form>
         <div className={styles.content__header}>
-          <Link href="/login" className={styles.highlight}>
-            Back to Login
-          </Link>
+          <p>
+            Already have an account?{" "}
+            <Link href="/login" className={styles.highlight}>
+              Login
+            </Link>
+          </p>
         </div>
         {isSubmitted && (
           <div>
-            <p>{passwordInfo?.newpassword}</p>
-            <p>{passwordInfo?.confirmPassword}</p>
+            <p>{signupInfo?.username}</p>
+            <p>{signupInfo?.email}</p>
+            <p>{signupInfo?.password}</p>
           </div>
         )}
       </div>
@@ -60,4 +78,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default SignUp;
