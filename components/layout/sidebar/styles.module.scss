@@ -26,14 +26,15 @@
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 18px;
   text-align: left;
 
+  &__item {
+    padding: 18px 24px;
+    border-radius: 5px;
+  }
+  
   & div:hover {
     background-color: darken($sidebar-bg, 15%);
   }
-}
-.content__item {
-  padding: 18px 24px;
-  border-radius: 5px;
 }
