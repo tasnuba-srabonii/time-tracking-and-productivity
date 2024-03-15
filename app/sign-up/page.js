@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./styles.module.scss";
+import styles from "../forms.module.scss";
 import Link from "next/link";
 
 const SignUp = () => {

@@ -1,4 +1,4 @@
-@use "@/public/styles/variables" as *;
+@use "@/styles/variables" as *;
 
 .container {
   position: fixed;
@@ -33,7 +33,7 @@
     padding: 18px 24px;
     border-radius: 5px;
   }
-  
+
   & div:hover {
     background-color: darken($sidebar-bg, 15%);
   }

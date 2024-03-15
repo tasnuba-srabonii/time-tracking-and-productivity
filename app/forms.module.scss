@@ -1,4 +1,4 @@
-@use "@/public/styles/variables" as *;
+@use "@/styles/variables" as *;
 
 .container {
   display: flex;
@@ -7,7 +7,6 @@
   background-color: $sidebar-bg;
   min-height: 100vh;
 }
-
 .content {
   min-height: 450px;
   background-color: white;
@@ -30,42 +29,42 @@
     color: lighten($primary-color, 10%);
   }
 }
-
 .form {
   display: flex;
   flex-direction: column;
   padding: 50px 15px;
 }
-
 .input {
   min-width: 400px;
   padding: 10px 15px;
   margin: 10px 0;
   border-radius: 8px;
   border: 0.5px solid gray;
-
   &:focus {
     outline: none;
     border-color: $primary-color;
     box-shadow: 0 3px 6px $sidebar-bg;
   }
 }
-
 .submit {
   padding: 10px 20px;
   margin: 15px 0;
   border: 1px solid $primary-color;
   border-radius: 8px;
-  background-color: $primary-color;
+  background-color: lighten($primary-color, 10%);
   width: fit-content;
   cursor: pointer;
 
   &:hover {
-    background-color: lighten($primary-color, 10%);
+    background-color: lighten($primary-color, 30%);
   }
 }
-
 .highlight {
   color: $primary-color;
   cursor: pointer;
+}
+.errors{
+  color: $danger;
+  font-size: 12px;
+  margin-left: 16px;
 }
