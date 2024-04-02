@@ -2,85 +2,26 @@
 import { useEffect, useState } from "react";
 import styles from "../forms.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { EMAIL_REG_EX } from "@/utils/constants";
 
 const Login = () => {
+  const router = useRouter();
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   const handleInput = (event) => {
-    setDisable(false);
-    const name = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
     setLoginInfo((prevState) => ({ ...prevState, [name]: value }));
-
-    if (value == "") {
-      setErrors((prevState) => ({
-        ...prevState,
-        [name]: `${
-          name.charAt(0).toUpperCase() + name.slice(1)
-        } field is required`,
-      }));
-    } else {
-      setErrors((prevState) => ({
-        ...prevState,
-        [name]: "",
-      }));
-    }
-
-    if (name == "email" && value.length > 0) {
-      if (!value.match(EMAIL_REG_EX)) {
-        setErrors((prevState) => ({
-          ...prevState,
-          email: "Invalid email address",
-        }));
-      } else {
-        setErrors((prevState) => ({
-          ...prevState,
-          email: "",
-        }));
-      }
-    }
-  };
-
-  const isValid = () => {
-    for (let key in loginInfo) {
-      if (loginInfo[key] == "") {
-        setErrors((prevState) => ({
-          ...prevState,
-          [key]: `${
-            key.charAt(0).toUpperCase() + key.slice(1)
-          } field is required`,
-        }));
-        return false;
-      } else {
-        setErrors((prevState) => ({
-          ...prevState,
-          [key]: "",
-        }));
-      }
-    }
-    for (let key in errors) {
-      if (errors[key] != "") {
-        return false;
-      }
-    }
-    return true;
   };
 
   const handleSubmit = (event) => {
-    setDisable(true);
     event.preventDefault();
-    if (isValid()) {
-      setIsSubmitted(true);
-    }
+    setIsSubmitted(true);
+    setLoginInfo({ email: "", password: "" });
+    router.push("/dashboard");
   };
-
-  useEffect(() => {
-    console.log("isSubmitted: ", isSubmitted);
-  }, [isSubmitted]);
 
   return (
     <div className={styles.container}>
@@ -94,21 +35,23 @@ const Login = () => {
             type="text"
             name="email"
             placeholder="Email"
+            value={loginInfo.email}
             onChange={handleInput}
             className={styles.input}
           />
-          {errors?.email && <p className={styles.errors}>{errors.email}</p>}
+          {errors?.email && <p className={styles.errors}>{errors?.email}</p>}
           <input
             type="password"
             name="password"
             placeholder="Password"
+            value={loginInfo.password}
             onChange={handleInput}
             className={styles.input}
           />
           {errors?.password && (
-            <p className={styles.errors}>{errors.password}</p>
+            <p className={styles.errors}>{errors?.password}</p>
           )}
-          <button type="submit" className={styles.submit} disabled={disable}>
+          <button type="submit" className={styles.submit}>
             Login
           </button>
           <span>
@@ -119,18 +62,12 @@ const Login = () => {
         </form>
         <div className={styles.content__header}>
           <p>
-            Don't have an account?{" "}
+            Do not have an account?{" "}
             <Link href="/sign-up" className={styles.highlight}>
               Sign up
             </Link>
           </p>
         </div>
-        {isSubmitted && (
-          <div>
-            <p>{loginInfo?.email}</p>
-            <p>{loginInfo?.password}</p>
-          </div>
-        )}
       </div>
     </div>
   );

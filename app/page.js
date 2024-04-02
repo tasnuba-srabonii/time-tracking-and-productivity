@@ -1,5 +1,10 @@
 import Dashboard from "./dashboard/page";
+import Login from "./login/page";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 }
