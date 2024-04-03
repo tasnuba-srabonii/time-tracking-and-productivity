@@ -59,11 +59,25 @@
     background-color: lighten($primary-color, 30%);
   }
 }
+.revert {
+  padding: 10px 20px;
+  margin: 15px 0;
+  border: 1px solid $danger;
+  border-radius: 8px;
+  background-color: lighten($danger, 20%);
+  color: white;
+  width: fit-content;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($danger, 30%);
+  }
+}
 .highlight {
   color: $primary-color;
   cursor: pointer;
 }
-.errors{
+.errors {
   color: $danger;
   font-size: 12px;
   margin-left: 16px;

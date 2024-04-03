@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const ForgotPassword = () => {
   const [emailInfo, setEmailInfo] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInput = (event) => {
     const name = event.target.name;
@@ -26,7 +25,7 @@ const ForgotPassword = () => {
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           <p>
-            Enter your email and we'll send you a link to reset your password
+            Enter your email and we will send you a link to reset your password
           </p>
           <input
             type="text"
@@ -44,11 +43,6 @@ const ForgotPassword = () => {
             Back to Login
           </Link>
         </div>
-        {isSubmitted && (
-          <div>
-            <p>{emailInfo?.email}</p>
-          </div>
-        )}
       </div>
     </div>
   );

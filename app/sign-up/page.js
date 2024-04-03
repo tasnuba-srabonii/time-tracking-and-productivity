@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const SignUp = () => {
   const [signupInfo, setSignupInfo] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInput = (event) => {
     const name = event.target.name;
@@ -15,7 +14,6 @@ const SignUp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
   };
 
   return (
@@ -66,13 +64,6 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-        {isSubmitted && (
-          <div>
-            <p>{signupInfo?.username}</p>
-            <p>{signupInfo?.email}</p>
-            <p>{signupInfo?.password}</p>
-          </div>
-        )}
       </div>
     </div>
   );

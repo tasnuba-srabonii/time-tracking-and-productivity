@@ -1,26 +1,46 @@
 "use client";
-import { useState } from "react";
 import styles from "../../forms.module.scss";
-import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const Integration = () => {
-  const { session, status } = useSession();
+  const { data: session, status } = useSession();
 
-  console.log("session : ", session);
-
-  console.log("process.env.GITHUB_ID : ", process.env.NEXT_PUBLIC_GITHUB_ID);
   return (
-    <button
-      className={styles.submit}
-      style={{ marginLeft: "50px" }}
-      onClick={(e) => {
-        e.preventDefault();
-        signIn("github");
-      }}
-    >
-      Enable Github
-    </button>
+    <div style={{ marginLeft: "50px" }}>
+      {status == "unauthenticated" ? (
+        <button
+          className={styles.submit}
+          onClick={() => {
+            signIn("github");
+          }}
+        >
+          Enable Github
+        </button>
+      ) : (
+        <button
+          className={styles.revert}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Disable Github
+        </button>
+      )}
+
+      {status == "authenticated" && (
+        <div>
+          <div>
+            <h4>User Info :</h4>
+            <p>{session?.user?.name}</p>
+            <p>{session?.user?.email}</p>
+          </div>
+          <div>
+            <h4>Session expires :</h4>
+            <p>{session?.expires}</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

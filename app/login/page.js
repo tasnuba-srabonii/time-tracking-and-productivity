@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../forms.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,6 @@ const Login = () => {
   const router = useRouter();
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -18,9 +17,24 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
-    setLoginInfo({ email: "", password: "" });
-    router.push("/dashboard");
+    if (loginInfo.email !== "" && loginInfo.password !== "") {
+      router.push("/dashboard");
+      setLoginInfo({ email: "", password: "" });
+      setErrors({ email: "", password: "" });
+    } else {
+      if (loginInfo.email == "") {
+        setErrors((prevState) => ({
+          ...prevState,
+          email: "Email field is required",
+        }));
+      }
+      if (loginInfo.password == "") {
+        setErrors((prevState) => ({
+          ...prevState,
+          password: "Password field is required",
+        }));
+      }
+    }
   };
 
   return (

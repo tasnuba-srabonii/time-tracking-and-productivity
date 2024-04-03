@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const ResetPassword = () => {
   const [passwordInfo, setPasswordInfo] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInput = (event) => {
     const name = event.target.name;
@@ -15,7 +14,6 @@ const ResetPassword = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
   };
 
   return (
@@ -49,12 +47,6 @@ const ResetPassword = () => {
             Back to Login
           </Link>
         </div>
-        {isSubmitted && (
-          <div>
-            <p>{passwordInfo?.newpassword}</p>
-            <p>{passwordInfo?.confirmPassword}</p>
-          </div>
-        )}
       </div>
     </div>
   );

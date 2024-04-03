@@ -8,13 +8,7 @@ export const authOptions = {
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
     }),
   ],
-  session: {
-    strategy: "jwt", // Use JSON Web Tokens (JWT) for session management
-  },
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/dashboard", // Redirect users to "/login" when signing in
-  },
 };
 
 const handler = NextAuth(authOptions);
